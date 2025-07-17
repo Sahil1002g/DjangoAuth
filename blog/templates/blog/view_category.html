@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <select id="categoryDropdown">
+  <option value="mental">Mental Health</option>
+  <option value="heart">Heart Disease</option>
+  <option value="covid">Covid</option>
+  <option value="general">General Health</option>
+</select>
+
+<button onclick="checkCategory()">Submit</button>
+
+
+
+  <h2>Posts in "{{ category }}"</h2>
+<ul>
+
+  
+  {% for post in posts %}
+  <li>
+    <img src="{{ post.image.url }}" width="100" />
+    <strong>{{ post.title }}</strong><br />
+    {{ post.truncated_summary }}
+  </li>
+  {% empty %}
+  <li>No posts in this category.</li>
+  {% endfor %}
+</ul>
+<script>
+function checkCategory() {
+  var selectedValue = document.getElementById("categoryDropdown").value;
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

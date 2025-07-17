@@ -52,6 +52,12 @@
             Address: {{ user.address_line1 }}, {{ user.city }}, {{ user.state }}
             {{ user.pincode }}
           </p>
+          <a href="{% url 'my_posts' %}" class="btn btn-primary"> My Posts</a>
+          <a href="{% url 'all_post' %}" class="btn btn-primary"> Posts</a>
+          <br>
+          <br>
+          <a href="{% url 'create_post' %}" class="btn btn-primary">Create Post</a>
+          
         </div>
 
         <div class="card-body">

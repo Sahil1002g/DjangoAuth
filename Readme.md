@@ -9,6 +9,15 @@ A Django-based web application with custom user authentication for patients and 
 - User registration and login/logout functionality
 - Media upload support for profile pictures
 
+## Blog System
+
+- Doctors can create and manage blog posts in 4 categories: Mental Health, Heart Disease, Covid19, Immunization.
+- Blog post fields: Title, Image, Category, Summary, Content, Draft status.
+- Doctors see only their own posts (including drafts).
+- Patients can view all published (non-draft) posts, filtered by category.
+- Blog summaries are truncated to 15 words with '...' appended if longer.
+- Images are uploaded and displayed with posts.
+
 ## Project Structure
 
 ```
@@ -25,6 +34,12 @@ banaoTask1/
         forms.py
         urls.py
         templates/
+    blog/
+        models.py
+        views.py
+        forms.py
+        urls.py
+        templates/
     media/
     static/
 ```
@@ -35,35 +50,46 @@ banaoTask1/
 
 2. **Install dependencies** (preferably in a virtual environment):
 
-    ```sh
-    pip install django
-    ```
+   ```sh
+   pip install django mysqlclient python-decouple
+   ```
 
-3. **Apply migrations**:
+3. **Configure MySQL database**  
+   Add your credentials to a `.env` file:
 
-    ```sh
-    python manage.py migrate
-    ```
+   ```
+   DB_NAME=your_db_name
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+   ```
 
-4. **Create a superuser** (optional, for admin access):
+4. **Apply migrations**:
 
-    ```sh
-    python manage.py createsuperuser
-    ```
+   ```sh
+   python manage.py migrate
+   ```
 
-5. **Run the development server**:
+5. **Create a superuser** (optional, for admin access):
 
-    ```sh
-    python manage.py runserver
-    ```
+   ```sh
+   python manage.py createsuperuser
+   ```
 
-6. **Access the app**:
+6. **Run the development server**:
 
-    - Visit `http://127.0.0.1:8000/accounts/signup/` to register.
-    - Visit `http://127.0.0.1:8000/accounts/login/` to log in.
+   ```sh
+   python manage.py runserver
+   ```
+
+7. **Access the app**:
+
+   - Visit `http://127.0.0.1:8000/accounts/signup/` to register.
+   - Visit `http://127.0.0.1:8000/accounts/login/` to log in.
+   - Visit `http://127.0.0.1:8000/blog/create/` for doctors to create blog posts.
+   - Visit `http://127.0.0.1:8000/blog/category/` or `http://127.0.0.1:8000/blog/blogs/` for patients to view posts.
 
 ## Notes
 
 - Uploaded profile pictures are stored in the `media/profiles/` directory.
-- Static files are served from the `static/` directory during development.
-S
+- Blog images are stored in the `media/blog_images/` directory.
+- Static files are served from the `static/` directory during
